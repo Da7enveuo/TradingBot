@@ -1,0 +1,144 @@
+This is it! No more additions, just adjusting of weights
+
+3 things:
+	1. I No longer want TA-api, too much money. 
+	2. I want to use longer timeframes now.
+	3. Give more importance to certain candles.
+100 points total:
+15 -4 -5 -4
+StochRSI 19
+EMA 20
+CCI 10
+MFI 10
+MACD  19
+Candle 5
+Ichimoku Cloud  17
+
+
+Strategy:
+short term trading, intra week and such
+
+
+
+Stochastic Relative Strength Index (19):
+	Components:
+		- Stoch RSI and 9 Day average cross (5)
+		- distance between Stoch rsi and 9Day (5)
+		- side of trend (up/down) (5)
+		- position of rsi (4)
+	Bullish:
+		- upward cross from below to above 20
+		- upward cross from below to above 80
+		- upward cross of the Stochastic RSI of the 9 Day EMA S.RSI
+	Bearish:
+		- downward cross from above to below 80
+		- downward cross from above to below 20
+		- downward cross of the stocahstic rsi of the 9 day ema s.rsi
+	Additional Factors:
+		- Measure the previous distance from the current distance between stoch. rsi and 9d ema
+
+
+
+Exponential  Moving Averages (20):
+	Components:
+		- Cross of determined S/R/EMA's (8)
+		- trend (4)
+		- Multi Variate Gaussian prediction (3)
+		- distance between Ema's or ratios/crosses (5)
+	Cavets:
+		- must look back 25 periods to determine if there is an EMA that is respected more than others, like price bouncing off it.
+	Bullish:
+		- Price upward cross off established resistance 
+		- 50 cross upward 200
+		- 20 cross upward 100
+		- 20 cross upward 50
+	Bearish:
+		- price downward cross off established support
+		- 50 cross downward 200
+		- 20 cross downward 100
+		- 20 cross downward 50
+
+Commoditiy Channel Index (10):
+	Components: 
+		- Trend (6)
+		- Cross of 20/50/80
+	Bullish:
+		- upward cross of 20
+		- upward cross of 50
+		- upward cross of 80
+		- above 80
+	Bearish:
+		- downward cross of 20
+		- downward cross of 50
+		- downward cross of 80
+		- below 20
+
+
+Money Flow Index(10):
+	Components:
+		- spot above 80, middle, below 20 (6)
+		- cross of 20/50/80 (4)
+
+
+Moving Average Convergance Divergance(19):
+	Components:
+		- MACD and 9Day cross (4)
+		- distance between macd and 9Day (5)
+		- distance between 0 and macd and 9 day (5)
+		- side of trend (up/down) (5)
+	Bullish:
+		- upward cross of macd from below 0 to above 0
+		- upward cross of macd above 9 day ema for macd
+		- upward trend of macd and 9 day ema
+	Bearish:
+		- downward cross of macd from above 0 to below 0
+		- downward cross of macd below 9 day ema for macd
+		- downward trend of macd and 9 day ema
+	Additional Factors:
+		- should measure the distance between the macd and 9 day ema
+
+Candle(5):
+	Components:
+		- Trend (3)
+		- Wick Direction (2)
+
+Ichimoku Cloud (17):
+	Components:
+		- future span cloud cross/trend (4)
+		- current cloud-close price cross/trend (7)
+		- base-conversion cross/trend (6)
+	
+
+
+Analysis:
+we are going to score the indicators 
+
+
+Exit Strategy:
+	- we want to base our exits off stop losses and capitulation on indicators
+
+
+
+
+
+	/*
+				what we want to indicate on for scalping:
+					Timeframe Agnostic (works with them all):
+					- 34 EMA, 50 EMA, 75 EMA, 100 EMA, 200 EMA (Exponential Movaing Average tells you about price change over X amount of days)
+					- 50 period CCI (Commodity Channel Index tells you when an investment is reaching a condition of being overbought/oversold), when above 0 line then bullish and inverse is bearish
+					- Stochastic RSI (Relative Strength Index tells you whether it is overbought or oversold utilizing stochastic formula)
+					- Set a 7-10% (honestly might wanna tighten this even further) Stop Loss or when there is a recent swing high/low move Stop Loss into breakeven once possible to cover fees while setting a Tkae Profit (TP) at 10%
+					- Market order buy in and using limit order for (TP- Take Profit) to cut fees down
+
+					1 Minute Buy Signals:
+					- Once 50 period CCi crosses above zero line, roughly 20-30 minutes later Stochastic RSI will make a pullback into oversold for your buy Signal take entry when Stochastic RSI crosses above 20 line
+
+					1 Minute Sell Signals:
+					- Once 50 period crosses below the zero line, roughly 20-30 minutes later Stochastic RSI will make a pullback into overbought for your sell signal take entry when Stochastic RSI crosses below the 80 line
+
+					3 Minute Buy Signals:
+					- Once 50 period CCi crosses above zero line, roughly 20-30 minutes later Stochastic RSI will make a pullback into oversold for your buy Signal take entry when Stochastic RSI crosses above 20 line
+		aw
+					3 Minute Sell Signals:
+					- Once 50 period crosses below the zero line, roughly 20-30 minutes later Stochastic RSI will make a pullback into overbought for your sell signal take entry when Stochastic RSI crosses below the 80 line
+	*/
